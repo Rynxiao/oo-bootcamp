@@ -9,14 +9,14 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 
 public class ParkingLotManager {
 
-  private List<ParkingInterface> parkingBoyList;
+  private List<ParkingInterface> parkingLotList;
 
-  public ParkingLotManager(List<ParkingInterface> parkingBoyList) {
-    this.parkingBoyList = parkingBoyList;
+  public ParkingLotManager(List<ParkingInterface> parkingLotList) {
+    this.parkingLotList = parkingLotList;
   }
 
   public Ticket park(Car car) {
-    return parkingBoyList.stream()
+    return parkingLotList.stream()
         .filter(parkingBoy -> !parkingBoy.isFull())
         .findAny()
         .orElseThrow(ParkingForbidException::new)
@@ -27,7 +27,7 @@ public class ParkingLotManager {
     if (isEmpty(ticket)) {
       throw new InvalidTicketException();
     }
-    return parkingBoyList.stream()
+    return parkingLotList.stream()
         .filter(parkingBoy -> parkingBoy.hasCar(ticket))
         .findAny()
         .orElseThrow(InvalidTicketException::new)

@@ -34,7 +34,7 @@ class SmartParkingBoyTest {
     Ticket ticket = smartParkingBoy.park(car);
 
     assertNotNull(ticket);
-    assertTrue(parkingLot2.isCarExist(ticket));
+    assertTrue(parkingLot2.hasCar(ticket));
   }
 
   @Test
@@ -46,7 +46,7 @@ class SmartParkingBoyTest {
     Ticket ticket = smartParkingBoy.park(car);
 
     assertNotNull(ticket);
-    assertTrue(parkingLot1.isCarExist(ticket));
+    assertTrue(parkingLot1.hasCar(ticket));
   }
 
   @Test

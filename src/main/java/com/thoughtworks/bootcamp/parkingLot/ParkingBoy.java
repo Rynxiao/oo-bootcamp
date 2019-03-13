@@ -18,11 +18,13 @@ public abstract class ParkingBoy implements ParkingInterface {
       throw new InvalidTicketException();
     }
     return parkingLots.stream()
-        .filter(parkingLot -> parkingLot.isCarExist(ticket))
+        .filter(parkingLot -> parkingLot.hasCar(ticket))
         .findAny()
         .orElseThrow(InvalidTicketException::new)
         .fetch(ticket);
   }
+
+  public abstract Ticket park(Car car);
 
   @Override
   public Boolean isFull() {
@@ -31,6 +33,6 @@ public abstract class ParkingBoy implements ParkingInterface {
 
   @Override
   public Boolean hasCar(Ticket ticket) {
-      return parkingLots.stream().anyMatch(parkinglot -> parkinglot.isCarExist(ticket));
+      return parkingLots.stream().anyMatch(parkinglot -> parkinglot.hasCar(ticket));
   }
 }

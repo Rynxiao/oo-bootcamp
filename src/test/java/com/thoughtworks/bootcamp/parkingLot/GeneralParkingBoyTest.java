@@ -34,7 +34,7 @@ class GeneralParkingBoyTest {
     Ticket ticket = generalParkingBoy.park(car);
 
     assertNotNull(ticket);
-    assertTrue(parkingLot1.isCarExist(ticket) || parkingLot2.isCarExist(ticket));
+    assertTrue(parkingLot1.hasCar(ticket) || parkingLot2.hasCar(ticket));
   }
 
   @Test

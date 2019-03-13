@@ -7,7 +7,7 @@ import java.util.Map;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
 
-public class ParkingLot {
+public class ParkingLot implements ParkingInterface {
 
   private int size;
   private Map<Ticket, Car> carMap = new HashMap<>();
@@ -42,7 +42,7 @@ public class ParkingLot {
     return removedCar;
   }
 
-  public Boolean isCarExist(Ticket ticket) {
+  public Boolean hasCar(Ticket ticket) {
     return carMap.containsKey(ticket);
   }
 }
