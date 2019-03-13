@@ -1,5 +1,6 @@
 package com.thoughtworks.bootcamp.parkingLot;
 
+import com.thoughtworks.bootcamp.exceptions.InvalidTicketException;
 import com.thoughtworks.bootcamp.exceptions.ParkingForbidException;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class ParkingLotManager {
     return parkingBoyList.stream()
         .filter(parkingBoy -> parkingBoy.hasCar(ticket))
         .findAny()
-        .orElseGet(null)
+        .orElseThrow(InvalidTicketException::new)
         .fetch(ticket);
   }
 }

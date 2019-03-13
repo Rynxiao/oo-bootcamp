@@ -1,5 +1,6 @@
 package com.thoughtworks.bootcamp.parkingLot;
 
+import com.thoughtworks.bootcamp.exceptions.InvalidTicketException;
 import com.thoughtworks.bootcamp.exceptions.ParkingForbidException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,5 +53,15 @@ class ParkingLotManagerTest {
     Car fetchedCar = parkingLotManager.fetch(existTicket);
 
     assertEquals(existCar, fetchedCar);
+  }
+
+  @Test
+  void should_throw_exception_when_fetch_car_given_a_invalid_ticket_to_parking_manager() {
+    Car existCar = new Car(1);
+    parkingLotManager.park(existCar);
+
+    Ticket invalidTicket = new Ticket(2);
+
+    assertThrows(InvalidTicketException.class, () -> parkingLotManager.fetch(invalidTicket));
   }
 }
