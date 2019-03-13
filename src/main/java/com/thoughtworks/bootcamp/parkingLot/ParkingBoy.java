@@ -5,7 +5,7 @@ import java.util.List;
 
 import static org.springframework.util.StringUtils.isEmpty;
 
-public abstract class ParkingBoy {
+public abstract class ParkingBoy implements ParkingInterface {
 
   List<ParkingLot> parkingLots;
 
@@ -22,5 +22,10 @@ public abstract class ParkingBoy {
         .findAny()
         .orElseThrow(InvalidTicketException::new)
         .fetch(ticket);
+  }
+
+  @Override
+  public Boolean isFull() {
+    return parkingLots.stream().allMatch(ParkingLot::isFull);
   }
 }
