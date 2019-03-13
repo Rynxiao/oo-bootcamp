@@ -64,4 +64,21 @@ class ParkingLotManagerTest {
 
     assertThrows(InvalidTicketException.class, () -> parkingLotManager.fetch(invalidTicket));
   }
+
+  @Test
+  void should_return_a_ticket_when_parking_car_given_full_parking_lots_fetched_a_car() {
+    Car car1 = new Car(1);
+    Car car2 = new Car(1);
+    Car car3 = new Car(1);
+    parkingLotManager.park(car1);
+    parkingLotManager.park(car2);
+    Ticket ticket3 = parkingLotManager.park(car3);
+    parkingLotManager.fetch(ticket3);
+
+    Car comingCar = new Car(4);
+
+    Ticket comingTicket = parkingLotManager.park(comingCar);
+
+    assertNotNull(comingTicket);
+  }
 }
