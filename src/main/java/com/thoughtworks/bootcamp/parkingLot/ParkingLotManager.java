@@ -5,6 +5,8 @@ import com.thoughtworks.bootcamp.exceptions.ParkingForbidException;
 
 import java.util.List;
 
+import static org.springframework.util.ObjectUtils.isEmpty;
+
 public class ParkingLotManager {
 
   private List<ParkingInterface> parkingBoyList;
@@ -22,6 +24,9 @@ public class ParkingLotManager {
   }
 
   public Car fetch(Ticket ticket) {
+    if (isEmpty(ticket)) {
+      throw new InvalidTicketException();
+    }
     return parkingBoyList.stream()
         .filter(parkingBoy -> parkingBoy.hasCar(ticket))
         .findAny()

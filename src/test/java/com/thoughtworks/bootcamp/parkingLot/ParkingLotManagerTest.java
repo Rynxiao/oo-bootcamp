@@ -81,4 +81,12 @@ class ParkingLotManagerTest {
 
     assertNotNull(comingTicket);
   }
+
+    @Test
+    void should_throw_exception_when_fetch_given_no_ticket() {
+        Car parkingCar = new Car(1);
+        parkingLotManager.park(parkingCar);
+
+        assertThrows(InvalidTicketException.class, () -> parkingLotManager.fetch(null));
+    }
 }
