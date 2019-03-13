@@ -28,4 +28,9 @@ public abstract class ParkingBoy implements ParkingInterface {
   public Boolean isFull() {
     return parkingLots.stream().allMatch(ParkingLot::isFull);
   }
+
+  @Override
+  public Boolean hasCar(Ticket ticket) {
+      return parkingLots.stream().anyMatch(parkinglot -> parkinglot.isCarExist(ticket));
+  }
 }

@@ -19,4 +19,12 @@ public class ParkingLotManager {
         .orElseThrow(ParkingForbidException::new)
         .park(car);
   }
+
+  public Car fetch(Ticket ticket) {
+    return parkingBoyList.stream()
+        .filter(parkingBoy -> parkingBoy.hasCar(ticket))
+        .findAny()
+        .orElseGet(null)
+        .fetch(ticket);
+  }
 }

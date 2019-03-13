@@ -43,4 +43,14 @@ class ParkingLotManagerTest {
 
     assertThrows(ParkingForbidException.class, () -> parkingLotManager.park(comingCar));
   }
+
+  @Test
+  void should_return_a_ticket_when_fetch_car_given_a_valid_ticket_to_parking_manager() {
+    Car existCar = new Car(1);
+    Ticket existTicket = parkingLotManager.park(existCar);
+
+    Car fetchedCar = parkingLotManager.fetch(existTicket);
+
+    assertEquals(existCar, fetchedCar);
+  }
 }
